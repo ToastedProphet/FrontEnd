@@ -1,0 +1,15 @@
+.cBody {
+    position:relative;
+    width: auto;
+    min-width: 300px;
+    height: 100vh;
+    background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+    color:white;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.myScroll{
+    height: 400px;
+    overflow: auto;
+}

@@ -1,0 +1,73 @@
+<div class="cBody">
+    <h1 class="display-1 m-5" style="text-align:center;">Sentence Builder</h1>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="row myScroll m-0 p-0">
+                <table class="table table-dark table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>Sentences</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of mSentencesList">
+                            <td>{{ item.Sentence }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row mt-2">
+                <button type="button" class="btn btn-dark mx-auto" data-toggle="modal"
+                    data-target="#addSentenceModal">Create Your Sentence!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="addSentenceModal" tabindex="-1" role="dialog" aria-labelledby="addSentenceModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addSentenceModalLabel">Create Sentence</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="form-group row col-md-12">
+                            <div class="col-md-5">
+                                <label for="wordTypes">Select Word Type</label>
+                                <select class="form-control" name="wordTypes" [(ngModel)]="mSelectedWordType" (ngModelChange)="OnWordTypeChange($event)">
+                                    <option *ngFor="let item of mWordTypesList" [ngValue]="item"> {{ item.WordType }} </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="word">Select Word</label>
+                                <select class="form-control" name="word" [(ngModel)]="mSelectedWord">
+                                    <option *ngFor="let item of mWordsList" [ngValue]="item"> {{ item.Word }} </option>
+                                </select>
+                            </div>
+                            <button style="max-height: 39px;" type="button" [disabled]="!mSelectedWord" class="btn btn-success ml-auto mt-auto"
+                            (click)="onAddWordClick()">Add Word</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input class="form-control" type="text" name="sntce" placeholder="Your Sentence here" [(ngModel)]="mSentence" readonly>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onCancelClick()">Cancel</button>
+                <button type="button" class="btn btn-secondary" (click)="onCancelClick()">Clear</button>
+                <button type="button" class="btn btn-success" (click)="onAddClick()" data-dismiss="modal">Add Sentence</button>
+            </div>
+        </div>
+    </div>
+</div>
